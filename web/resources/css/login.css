@@ -1,0 +1,38 @@
+body {
+    background-image: url('../image/111.jpg');
+    background-size: cover;
+}
+
+.error {
+    color: red;
+}
+
+.good {
+    color: green;
+}
+
+.glow {
+    font-size: 25;
+    color: white;
+    text-shadow: 0px 0px 20px black;
+}
+
+.help {
+    font-size: large;
+    color: gold;
+    text-shadow: 0px 0px 20px gold;
+}
+
+.button-wrapper {
+    width: 150px;
+    height: 150px;
+    padding: 50px;
+    border: 1px solid grey;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    position: relative;
+}
+
+#my-button {
+    position: absolute;
+}

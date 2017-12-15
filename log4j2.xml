@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration scan="true" scanPeriod="30 seconds" status="warn">
+    <Properties>
+        <Property name="logHome">src/main/resources/log</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%.-19date [%thread] [%level] [%logger] >>> %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+        <RollingFile name="fileAudit" fileName="${logHome}/sphere.log"
+                     filePattern="${logHome}/$${date:yyyy-MM}/gameroom-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%.-19date [%thread] [%level] >>> %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy toySize="5 MB"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="fileError" fileName="${logHome}/error.log"
+                     filePattern="${logHome}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout>
+                <Pattern>%.-19date [%thread] [%level] >>> %msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy toySize="5 MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="by.kalilaska" level="debug" additivity="false">
+            <appender-ref ref="console" level="debug" />
+            <appender-ref ref="fileAudit" level="debug"/>
+            <appender-ref ref="fileError" level="error"/>
+        </Logger>
+
+        <Root level="error">
+            <appender-ref ref="fileError" />
+        </Root>
+    </Loggers>
+</Configuration>
